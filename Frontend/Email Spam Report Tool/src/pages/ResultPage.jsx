@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { runCheck } from "../utils/api";
 import {runDeliverabilityCheck} from "../api/checkApi"
 import { useSearchParams } from "react-router-dom";
 import Loader from "../components/Loader";
