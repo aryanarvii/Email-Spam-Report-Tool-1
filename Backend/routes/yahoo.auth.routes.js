@@ -23,6 +23,7 @@ router.get("/yahoo", (req, res) => {
     redirect_uri: process.env.YAHOO_REDIRECT_URI,
     scope: "mail-r",
     response_type: "code",
+    state: Math.random().toString(36).substring(7),
   });
   res.redirect(authorizationUri);
 });
