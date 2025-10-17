@@ -12,7 +12,7 @@ export default function HomePage() {
     (async () => {
       try {
         const data = await generateTestCode();
-        console.log(data)
+        //console.log(data)
         setTestCode(data.code);
         setInboxes(data.inboxes);
       } catch (err) {
