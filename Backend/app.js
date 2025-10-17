@@ -6,7 +6,7 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-    "https://email-spam-report-tool-1.vercel.app/",         // main frontend
+    "https://email-spam-report-tool-1.vercel.app",         // main frontend
     "http://localhost:5173",                                // local dev
   ];
   
