@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import ResultPage from "./pages/ResultPage";
 import HistoryPage from "./pages/HistoryPage";
 import Navbar from "./components/Navbar";
+import ReportPage from "./pages/ReportPage"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/report/:id" element={<ReportPage />} />
       </Routes>
     </BrowserRouter>
   );

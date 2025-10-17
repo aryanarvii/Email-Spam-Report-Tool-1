@@ -4,7 +4,7 @@ import { generateReportPDF } from "../services/pdf.service.js";
 
 const router = express.Router();
 
-router.get("/report/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   const report = await Report.findOne({ reportId: req.params.id });
   if (!report) return res.status(404).send("Report not found");
   res.json(report);
@@ -12,7 +12,14 @@ router.get("/report/:id", async (req, res) => {
 
 // existing: GET /report/:id
 
-router.get("/reports/:email", async (req, res) => {
+// router.get("/:email", async (req, res) => {
+//   const reports = await Report.find({ userEmail: req.params.email })  
+//     .sort({ createdAt: -1 })
+//     .limit(20);
+//   res.json(reports);
+// });
+
+router.get("/by-email/:email", async (req, res) => {
   const reports = await Report.find({ userEmail: req.params.email })
     .sort({ createdAt: -1 })
     .limit(20);
@@ -20,7 +27,9 @@ router.get("/reports/:email", async (req, res) => {
 });
 
 
-router.get("/report/:id/pdf", async (req, res) => {
+
+router.get("/:id/pdf", async (req, res) => {
+  // console.log("req - ", req.params)
   const report = await Report.findOne({ reportId: req.params.id });
   if (!report) return res.status(404).send("Not found");
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchHistory } from "../utils/api";
+import {getHistory} from "../api/reportApi"
 
 export default function HistoryPage() {
   const [reports, setReports] = useState([]);
@@ -8,7 +9,7 @@ export default function HistoryPage() {
   useEffect(() => {
     if (email) {
       (async () => {
-        const history = await fetchHistory(email);
+        const history = await getHistory(email);
         setReports(history);
       })();
     }
@@ -19,13 +20,13 @@ export default function HistoryPage() {
       <h1 className="text-xl font-bold mb-4">📜 Past Tests</h1>
       <ul className="space-y-2">
         {reports.map(r => (
-          <li key={r.reportId} className="p-3 bg-white border rounded flex justify-between">
+          <li key={r.reportId} className="p-3 text-black bg-white border rounded flex justify-between">
             <div>
               <p className="font-semibold">Score: {r.deliverabilityScore}%</p>
               <p className="text-sm text-gray-500">{new Date(r.createdAt).toLocaleString()}</p>
             </div>
             <a
-              href={`${import.meta.env.VITE_API_BASE}/report/${r.reportId}`}
+              href={`${window.location.origin}/report/${r.reportId}`}
               target="_blank"
               className="text-blue-600 underline"
             >

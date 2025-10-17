@@ -6,15 +6,16 @@ export const getReport = async (id) => {
 };
 
 export const getHistory = async (email) => {
-  const { data } = await axiosInstance.get(`/api/report/reports/${email}`);
+  const { data } = await axiosInstance.get(`/api/report/by-email/${email}`);
   return data;
 };
 
 export const downloadPDF = async (id) => {
+
   const { data } = await axiosInstance.get(`/api/report/${id}/pdf`, {
     responseType: "blob", // 📎 important for file download
   });
-
+  //console.log("data --", data)
   const url = window.URL.createObjectURL(new Blob([data]));
   const link = document.createElement("a");
   link.href = url;

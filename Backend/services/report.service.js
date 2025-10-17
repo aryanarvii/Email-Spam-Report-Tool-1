@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import Report from "../models/report.model.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 export async function saveReport(testCode, userEmail, results) {
     const total = results.length;
@@ -21,7 +23,7 @@ export async function saveReport(testCode, userEmail, results) {
   
     return {
       reportId,
-      link: `${proccess.env.DOMAIN}/report/${reportId}`,
+      link: `${process.env.DOMAIN}/report/${reportId}`,
       results,
       deliverabilityScore
     };

@@ -1,4 +1,4 @@
-export const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+export const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export async function fetchTestCode() {
   const res = await fetch(`${API_BASE}/api/test`);
@@ -20,6 +20,6 @@ export async function fetchReport(reportId) {
 }
 
 export async function fetchHistory(email) {
-  const res = await fetch(`${API_BASE}/api/report/reports/${email}`);
+  const res = await fetch(`${API_BASE}/api/report/${email}`);
   return res.json();
 }

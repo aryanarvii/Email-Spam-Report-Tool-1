@@ -1,39 +1,43 @@
 import { useEffect, useState } from "react";
-import { runCheck } from "../utils/api";
-import {runDeliverabilityCheck} from "../api/checkApi"
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getReport } from "../api/reportApi";
 import Loader from "../components/Loader";
 
-
-export default function ResultPage() {
-  const [searchParams] = useSearchParams();
-  const testCode = searchParams.get("code");
-  const userEmail = searchParams.get("email");
-  // console.log("code in result: ", testCode)
-  // console.log("userEmail: ", userEmail)
-
-  const [loading, setLoading] = useState(true);
+export default function ReportPage() {
+  const { id } = useParams();
   const [report, setReport] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const result = await runDeliverabilityCheck(testCode, userEmail);
-      setReport(result);
-      setLoading(false);
+      try {
+        const data = await getReport(id);
+        setReport(data);
+      } catch (err) {
+        console.error("Failed to fetch report:", err);
+      } finally {
+        setLoading(false);
+      }
     })();
-  }, []);
+  }, [id]);
 
   if (loading) return <Loader />;
+  if (!report) return <p className="text-center mt-10 text-red-500">❌ Report not found</p>;
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-xl font-bold mb-4">📊 Deliverability Report</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">
+        📊 Deliverability Report
+      </h1>
 
-      <p className="mb-2 font-semibold">Deliverability Score: {report.deliverabilityScore}%</p>
+      <p className="mb-2 text-center font-semibold">
+        Deliverability Score: {report.deliverabilityScore}%
+      </p>
+      <p className="mb-4 text-center">Test Code: {report.testCode}</p>
 
       <table className="w-full border border-gray-200 text-left">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-100 text-black">
             <th className="p-2">Provider</th>
             <th className="p-2">Received</th>
             <th className="p-2">Folder</th>
@@ -50,19 +54,12 @@ export default function ResultPage() {
         </tbody>
       </table>
 
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 text-center">
         <a
           href={`${import.meta.env.VITE_API_URL}/api/report/${report.reportId}/pdf`}
           className="bg-gray-800 text-white px-4 py-2 rounded"
         >
           Download PDF
-        </a>
-        <a
-          href={`${window.location.origin}/report/${report.reportId}`}
-          target="_blank"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Share Report Link
         </a>
       </div>
     </div>
