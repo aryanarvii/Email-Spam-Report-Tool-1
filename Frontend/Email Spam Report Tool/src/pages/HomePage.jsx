@@ -20,7 +20,7 @@ export default function HomePage() {
       }
     })();
   }, []);
-  console.log("code ", testCode)
+  //console.log("code ", testCode)
   const handleStartTest = () => {
     localStorage.setItem("userEmail", email);
     navigate(`/result?code=${testCode}&email=${email}`);

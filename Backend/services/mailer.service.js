@@ -3,6 +3,9 @@ import nodemailer from "nodemailer";
 export async function sendReportMail(to, reportLink) {
   const reportId = reportLink.split("/").pop();
   const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     service: "gmail",
     auth: {
       user: process.env.SENDER_EMAIL,
