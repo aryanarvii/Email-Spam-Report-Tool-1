@@ -31,6 +31,12 @@ router.get("/yahoo", (req, res) => {
 // 2️⃣ Callback
 router.get("/yahoo/callback", async (req, res) => {
   const { code } = req.query;
+  console.log("Yahoo callback query:", req.query);
+
+  if (!code) {
+    return res.status(400).send("Missing code in Yahoo callback");
+  }
+
   try {
     const accessToken = await client.getToken({
       code,
