@@ -49,7 +49,7 @@ export default function HomePage() {
 
       <input
         type="email"
-        placeholder="Enter your email"
+        placeholder="Enter Sender's email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="w-full p-2 border rounded mb-4"
@@ -62,6 +62,9 @@ export default function HomePage() {
       >
         Start Test
       </button>
+      <p className="my-3">
+        Kindly Enter the Sender's Email Address to Start the Test.
+      </p>
     </div>
   );
 }

@@ -7,10 +7,12 @@ const reportSchema = new mongoose.Schema({
     results: [
       {
         provider: String,
+        account: String,
         received: Boolean,
         folder: String,
       },
     ],
+
     
     deliverabilityScore: Number,
     createdAt: Date,

@@ -39,19 +39,20 @@ app.get("/", (req, res) => {
 });
 
 
-import authRoutes from "./routes/gmail.auth.routes.js";
-app.use("/api/auth", authRoutes);
+import gmailAuthRoutes from "./routes/authRoutes/gmail.auth.routes.js";
+app.use("/api/auth", gmailAuthRoutes);
+
+import outlookAuthRoutes from "./routes/authRoutes/outlook.auth.routes.js";
+app.use("/api/auth", outlookAuthRoutes);
 
 import checkmailRoutes from "./routes/gmail.service.routes.js";
 app.use("/api/checkmail", checkmailRoutes);
 
-import outlookAuthRoutes from "./routes/outlook.auth.routes.js";
-app.use("/api/auth", outlookAuthRoutes);
 
 import outlookServiceRoutes from "./routes/outlook.service.routes.js";
 app.use("/api/outlook", outlookServiceRoutes);
 
-import yahooAuthRoutes from "./routes/yahoo.auth.routes.js";
+import yahooAuthRoutes from "./routes/authRoutes/yahoo.auth.routes.js";
 app.use("/api/auth", yahooAuthRoutes);
 
 import yahooServiceRoutes from "./routes/yahoo.service.routes.js";

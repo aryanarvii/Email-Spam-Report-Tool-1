@@ -60,18 +60,18 @@ export async function sendReportMail(to, reportLink) {
           </tr>
           <tr>
             <td align="center" style="padding: 25px 0;">
-              <a href="${process.env.DOMAIN}/report/${reportId}" target="_blank" 
+              <a href="${process.env.F_DOMAIN}/report/${reportId}" target="_blank" 
                 style="background-color:#2563eb;color:#ffffff;padding:12px 24px;
                        text-decoration:none;border-radius:6px;font-size:16px;display:inline-block;">
                 👉 View Your Report
               </a>
-              <img src="${process.env.DOMAIN}/api/track/open/${reportId}" width="1" height="1" />
+      
             </td>
           </tr>
           <tr>
             <td style="color:#555555;font-size:14px;line-height:22px;">
               <p>If the button doesn't work, copy and paste the following link in your browser:</p>
-              <p style="word-break: break-all;"><a href="${process.env.DOMAIN}/report/${reportId}" style="color:#2563eb;">${process.env.DOMAIN}/report/${reportId}</a></p>
+              <p style="word-break: break-all;"><a href="${process.env.F_DOMAIN}/report/${reportId}" style="color:#2563eb;">${process.env.F_DOMAIN}/report/${reportId}</a></p>
             </td>
           </tr>
           <tr>

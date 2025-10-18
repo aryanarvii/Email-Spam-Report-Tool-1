@@ -15,7 +15,7 @@ router.post("/check", async (req, res) => {
 
   await sendReportMail(userEmail, `${process.env.DOMAIN}/report/${report.reportId}`);
 
-
+  //console.log(report);
   res.json(report);
 });
 

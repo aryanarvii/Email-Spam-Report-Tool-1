@@ -24,6 +24,8 @@ export default function ResultPage() {
 
   if (loading) return <Loader />;
 
+  //console.log(report)
+
   return (
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-xl font-bold mb-4">📊 Deliverability Report</h1>
@@ -35,6 +37,7 @@ export default function ResultPage() {
         <thead>
           <tr className="bg-gray-100 text-black">
             <th className="p-2">Provider</th>
+            <th className="p-2">Account</th>
             <th className="p-2">Received</th>
             <th className="p-2">Folder</th>
             <th className="p-2">Mail Read</th>
@@ -45,6 +48,7 @@ export default function ResultPage() {
           {report.results.map((r, idx) => (
             <tr key={idx} className="border-t">
               <td className="p-2">{r.provider}</td>
+              <td className="p-2">{r.account}</td>
               <td className="p-2">{r.received ? "✅" : "❌"}</td>
               <td className="p-2">{r.folder}</td>
               <td className="p-2">{r.read === "READ"? "SEEN ✅" : "NO UPDATE ❌"}</td>

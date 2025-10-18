@@ -23,7 +23,7 @@ export default function ReportPage() {
 
   if (loading) return <Loader />;
   if (!report) return <p className="text-center mt-10 text-red-500">❌ Report not found</p>;
-
+  //console.log(report)
   return (
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4 text-center">
@@ -39,6 +39,7 @@ export default function ReportPage() {
         <thead>
           <tr className="bg-gray-100 text-black">
             <th className="p-2 ">Provider</th>
+            <th className="p-2">Account</th>
             <th className="p-2">Received</th>
             <th className="p-2">Folder</th>
             <th className="p-2">Mail Read</th>
@@ -48,6 +49,7 @@ export default function ReportPage() {
           {report.results.map((r, idx) => (
             <tr key={idx} className="border-t">
               <td className="p-2">{r.provider}</td>
+              <td className="p-2">{r.account}</td>
               <td className="p-2">{r.received ? "✅" : "❌"}</td>
               <td className="p-2">{r.folder}</td>
               <td className="p-2">{r.read === "READ" ? "SEEN ✅" : "NO UPDATE ❌"}</td>
