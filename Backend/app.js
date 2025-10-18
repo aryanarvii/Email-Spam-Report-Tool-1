@@ -64,9 +64,21 @@ import reportRoutes from "./routes/report.routes.js";
 app.use("/api/report", reportRoutes);
 
 import trackingRoutes from "./routes/tracking.routes.js";
-app.use("/", trackingRoutes);
+app.use("/api/track", trackingRoutes);
 
 
+// TESTING ROUTES
 
+// import { sendReportMail } from "./services/mailer.service.js";
+
+// app.get("/test-mail", async (req, res) => {
+//   try {
+//     await sendReportMail("studynotion052@gmail.com", "http://localhost:5000/report/12345");
+//     res.send("✅ Mail sent successfully!");
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("❌ Failed to send mail");
+//   }
+// });
 
 export {app}

@@ -38,9 +38,10 @@ export default function ReportPage() {
       <table className="w-full border border-gray-200 text-left">
         <thead>
           <tr className="bg-gray-100 text-black">
-            <th className="p-2">Provider</th>
+            <th className="p-2 ">Provider</th>
             <th className="p-2">Received</th>
             <th className="p-2">Folder</th>
+            <th className="p-2">Mail Read</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,8 @@ export default function ReportPage() {
               <td className="p-2">{r.provider}</td>
               <td className="p-2">{r.received ? "✅" : "❌"}</td>
               <td className="p-2">{r.folder}</td>
+              <td className="p-2">{r.read === "READ" ? "SEEN ✅" : "NO UPDATE ❌"}</td>
+
             </tr>
           ))}
         </tbody>

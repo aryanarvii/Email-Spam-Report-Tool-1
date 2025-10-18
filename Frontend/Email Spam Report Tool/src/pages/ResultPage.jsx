@@ -27,15 +27,18 @@ export default function ResultPage() {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-xl font-bold mb-4">📊 Deliverability Report</h1>
+      
 
       <p className="mb-2 font-semibold">Deliverability Score: {report.deliverabilityScore}%</p>
 
       <table className="w-full border border-gray-200 text-left">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-100 text-black">
             <th className="p-2">Provider</th>
             <th className="p-2">Received</th>
             <th className="p-2">Folder</th>
+            <th className="p-2">Mail Read</th>
+
           </tr>
         </thead>
         <tbody>
@@ -44,6 +47,7 @@ export default function ResultPage() {
               <td className="p-2">{r.provider}</td>
               <td className="p-2">{r.received ? "✅" : "❌"}</td>
               <td className="p-2">{r.folder}</td>
+              <td className="p-2">{r.read === "READ"? "SEEN ✅" : "NO UPDATE ❌"}</td>
             </tr>
           ))}
         </tbody>
@@ -64,6 +68,8 @@ export default function ResultPage() {
           Share Report Link
         </a>
       </div>
+      <h3 className="my-5">Refresh To Update Results</h3>
+      
     </div>
   );
 }

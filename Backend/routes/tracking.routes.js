@@ -24,7 +24,7 @@ router.get("/click/:id", async (req, res) => {
       await report.save();
     }
     // Redirect to original URL (optional)
-    res.redirect(`${process.env.FRONTEND_URL}/report/${req.params.id}`);
+    res.redirect(`${process.env.F_DOMAIN}/report/${req.params.id}`);
   });
   
 

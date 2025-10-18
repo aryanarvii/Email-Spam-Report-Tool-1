@@ -20,13 +20,17 @@ export async function generateReportPDF(report) {
         <p><strong>Score:</strong> ${report.deliverabilityScore}%</p>
         <table>
           <tr>
-            <th>Provider</th><th>Received</th><th>Folder</th>
+            <th>Provider</th>
+            <th>Received</th>
+            <th>Folder</th>
+            <th>Mail Read</th>
           </tr>
           ${report.results.map(r => `
             <tr>
               <td>${r.provider}</td>
               <td>${r.received ? "✅" : "❌"}</td>
               <td>${r.folder}</td>
+              <td>${r.read === "READ"? "SEEN ✅" : "NO UPDATE ❌"}</td>
             </tr>
           `).join("")}
         </table>

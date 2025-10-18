@@ -7,11 +7,24 @@ export async function runDeliverabilityTest(testCode) {
 
   // Gmail
   const gmailResult = await gmailCheck(testCode);
+  //console.log("gmailResult ", gmailResult)
   
   results.push({
     provider: "Gmail",
     received: gmailResult.found,
-    folder: gmailResult.folder || "Not Found",
+    folder:
+    gmailResult.labels?.find(
+      (label) =>
+        label === "SPAM" ||
+        label === "TRASH" ||
+        label === "INBOX" ||
+        label === "SENT" ||
+        label === "DRAFT" ||
+        label.startsWith("CATEGORY_")
+    ) || "Not Found",
+
+    read: gmailResult.labels?.includes("UNREAD") ? "UNREAD" : "READ", 
+
   });
   
 
@@ -20,6 +33,7 @@ export async function runDeliverabilityTest(testCode) {
   //console.log("outlookResult- ", outlookResult)
   let received = false;
   let folder = "Not Found";
+  let read = "UNREAD"
 
   if (outlookResult.value && outlookResult.value.length > 0) {
     received = true;
@@ -30,11 +44,16 @@ export async function runDeliverabilityTest(testCode) {
     } else {
       folder = "Other"; // or Promotions if you're mapping this way
     }
+
+    read = outlookResult.value[0].isRead ? "READ" : "UNREAD";
+    console.log("out read -", outlookResult.value[0])
   }
   results.push({
     provider: "Outlook",
     received,
     folder,
+    read
+    
   });
 
   // Yahoo

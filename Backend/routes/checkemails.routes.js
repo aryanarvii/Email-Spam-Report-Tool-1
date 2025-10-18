@@ -9,6 +9,7 @@ router.post("/check", async (req, res) => {
   const { testCode, userEmail } = req.body;
   
   const results = await runDeliverabilityTest(testCode);
+  //console.log("results", results)
   const report = await saveReport(testCode, userEmail, results);
   // console.log("report -", report)
 
